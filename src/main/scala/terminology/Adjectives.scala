@@ -89,8 +89,4 @@ package object adjectives {
   object Secret {
     implicit val secret = deriveAdjective[Secret]
   }
-
-  Hashed(Weak(Secret("lol"))) mapU { (s: String) => s.length } : Hashed[Weak[Secret[Int]]]
-
-  Hashed(Weak(Secret("lol"))) mapU { (s: Secret[String]) => 7 } : Hashed[Weak[Int]]
 }

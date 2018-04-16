@@ -11,7 +11,9 @@ lazy val types = (project in file("."))
       compilerPlugin(library.kindProjector),
       library.catsCore % Compile,
       library.catsFree % Compile,
-      library.shapeless % Compile
+      library.shapeless % Compile,
+      // test dependencies
+      library.scalaTest % "test"
     )
   )
 
@@ -25,11 +27,13 @@ lazy val library =
       val cats          = "1.1.0"
       val kindProjector = "0.9.6"
       val shapeless     = "2.3.3"
+      val scalaTest     = "3.0.5"
     }
     val catsCore        = "org.typelevel"  %% "cats-core"      % Version.cats
     val catsFree        = "org.typelevel"  %% "cats-free"      % Version.cats
     val kindProjector   = "org.spire-math" %% "kind-projector" % Version.kindProjector
     val shapeless       = "com.chuusai"    %% "shapeless"      % Version.shapeless
+    val scalaTest       = "org.scalatest"  %% "scalatest"      % Version.scalaTest
   }
 
 // *****************************************************************************
@@ -50,6 +54,7 @@ lazy val commonSettings = Seq(
     "-Ywarn-unused-import",
     "-Yno-adapted-args",
     "-Ywarn-inaccessible",
+    "-Ywarn-dead-code",
     "-Ywarn-infer-any",
     "-Ywarn-nullary-override",
     "-Ywarn-nullary-unit",
