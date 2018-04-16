@@ -1,6 +1,7 @@
 package terminology
 
-import adjectives._
+import adjectives.common._
+import adjectives.implicits._
 
 import org.scalatest.{WordSpec, Matchers}
 
