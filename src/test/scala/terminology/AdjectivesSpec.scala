@@ -20,5 +20,19 @@ class AdjectivesSpec extends WordSpec with Matchers {
         Hashed(Weak(Secret("lol"))) mapU { (s: Weak[Secret[String]]) => () }
       }
     }
+
+    "as" in {
+      typed[Weak[Secret[String]]] {
+        Hashed(Weak(Secret("lol"))).as[Weak[Secret[String]]]
+      }
+
+      typed[Secret[String]] {
+        Hashed(Weak(Secret("lol"))).as[Secret[String]]
+      }
+
+      typed[String] {
+        Hashed(Weak(Secret("lol"))).as[String]
+      }
+    }
   }
 }
