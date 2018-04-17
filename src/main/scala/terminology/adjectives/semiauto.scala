@@ -7,8 +7,8 @@ package object semiauto {
   def deriveAdjective[F[_]](implicit
     gen: Generic1[F, internal.Point]
   ): Adjective[F] = new Adjective[F] {
-    def drop[U](x: F[U]): U = gen.fr.copoint(gen.to(x))
-    def mk[R](r: R): F[R] = gen.from(gen.fr.point(r))
+    def label[R](r: R): F[R] = gen.from(gen.fr.point(r))
+    def unlabel[U](x: F[U]): U = gen.fr.copoint(gen.to(x))
   }
 
   object internal {
