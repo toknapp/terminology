@@ -1,4 +1,4 @@
-package terminology.adjectives
+package co.upvest.terminology.adjectives
 
 import shapeless._
 

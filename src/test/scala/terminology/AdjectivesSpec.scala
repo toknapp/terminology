@@ -1,4 +1,4 @@
-package terminology
+package co.upvest.terminology
 
 import adjectives.common._
 import adjectives.implicits._

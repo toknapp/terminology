@@ -1,4 +1,4 @@
-package terminology.adjectives
+package co.upvest.terminology.adjectives
 
 trait Adjective[F[_]] {
   def label[R](r: R): F[R]

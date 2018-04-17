@@ -1,3 +1,5 @@
-README.md: readme.sh example.sc
+README.md:
 	amm example.sc
 	./readme.sh
+
+.PHONY: README.md

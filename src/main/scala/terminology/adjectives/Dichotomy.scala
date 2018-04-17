@@ -1,4 +1,4 @@
-package terminology.adjectives
+package co.upvest.terminology.adjectives
 
 // Dichotomies
 //   (eg it's a contradiction for a thing to be both weak and strong)
