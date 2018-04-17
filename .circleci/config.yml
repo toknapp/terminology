@@ -61,7 +61,11 @@ workflows:
           filters:
             branches:
               only: master
+          requires:
+            - test
       - release-snapshot:
           filters:
             branches:
               only: develop
+          requires:
+            - test
