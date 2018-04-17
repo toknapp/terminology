@@ -1,6 +1,6 @@
 # Terminology
 
-[![BuildStatus](https://circleci.com/gh/toknapp/arweave4s.svg?style=svg)](https://circleci.com/gh/toknapp/terminology)
+[![BuildStatus](https://circleci.com/gh/toknapp/terminology.svg?style=svg)](https://circleci.com/gh/toknapp/terminology)
 
 ## Example
 ```scala
