@@ -34,7 +34,7 @@ jobs:
     <<: *sbt-build
     resource_class: small
     environment:
-      SBT_CMDS: "; project core; release with-defaults"
+      SBT_CMDS: "; release with-defaults"
 
   release-snapshot:
     <<: *sbt-build
