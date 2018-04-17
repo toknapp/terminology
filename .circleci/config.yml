@@ -6,6 +6,12 @@ sbt-build: &sbt-build
   environment:
     - SBT_OPTS: "-Xms512m -Xmx2g -XX:+UseConcMarkSweepGC -XX:ReservedCodeCacheSize=256m -XX:+CMSClassUnloadingEnabled -Djava.awt.headless=true -no-colors -batch"
   steps:
+    - run: mkdir ~/.sbt/gpg
+    - run: echo $PGPKEY | base64 --decode --ignore-garbage > ~/.sbt/gpg/secring.asc
+    - run: gpg --batch --allow-secret-key-import --import ~/.sbt/gpg/secring.asc
+    - run: git config --global user.signingkey 2A3A8E063D9FD649
+    - run: git config --global user.email tech@upvest.co
+    - run: git config --global user.name "Tech@Upvest"
     - checkout
     - run: git branch -u origin/$CIRCLE_BRANCH
     - setup_remote_docker:
@@ -14,6 +20,8 @@ sbt-build: &sbt-build
     - restore_cache:
         key: sbt-deps-{{ checksum "build.sbt" }}
     - run: sbt "$SBT_OPTS" "$SBT_CMDS"
+    - run: rm ~/.sbt/gpg/secring.asc
+    - run: rm -rf ~/.gnupg
     - save_cache:
         key: sbt-deps-{{ checksum "build.sbt" }}
         paths:
@@ -22,6 +30,17 @@ sbt-build: &sbt-build
           - ~/.sbt
 
 jobs:
+  release:
+    <<: *sbt-build
+    resource_class: small
+    environment:
+      SBT_CMD: "; project core; release with-defaults"
+
+  release-snapshot:
+    <<: *sbt-build
+    resource_class: small
+    environment:
+      SBT_CMD: "; publishSigned"
 
   test:
     <<: *sbt-build
@@ -35,3 +54,14 @@ workflows:
   ci:
     jobs:
       - test
+
+  release:
+    jobs:
+      - release:
+          filters:
+            branches:
+              only: master
+      - release-snapshot:
+          filters:
+            branches:
+              only: develop
