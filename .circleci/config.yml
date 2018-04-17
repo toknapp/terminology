@@ -6,6 +6,9 @@ sbt-build: &sbt-build
   environment:
     - SBT_OPTS: "-Xms512m -Xmx2g -XX:+UseConcMarkSweepGC -XX:ReservedCodeCacheSize=256m -XX:+CMSClassUnloadingEnabled -Djava.awt.headless=true -no-colors -batch"
   steps:
+    - add_ssh_keys:
+        fingerprints:
+          - "57:c7:e7:60:94:77:3f:a4:ed:33:bb:d3:b3:b1:92:b4"
     - run: mkdir ~/.sbt/gpg
     - run: echo $PGPKEY | base64 --decode --ignore-garbage > ~/.sbt/gpg/secring.asc
     - run: gpg --batch --allow-secret-key-import --import ~/.sbt/gpg/secring.asc
