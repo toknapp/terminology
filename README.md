@@ -1,5 +1,7 @@
 # Terminology
 
+[![BuildStatus](https://circleci.com/gh/toknapp/arweave4s.svg?style=svg)](https://circleci.com/gh/toknapp/terminology)
+
 ## Example
 ```scala
 // If you have some wrappers describing some terms in your model ...
