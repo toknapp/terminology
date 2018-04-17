@@ -7,6 +7,6 @@ cat > $TARGET <<EOF
 
 ## Example
 \`\`\`scala
-$(tail -n+3 example.sc)
+$(cat src/test/resources/example.sc)
 \`\`\`
 EOF

@@ -2,6 +2,8 @@
 // Projects
 // *****************************************************************************
 
+resolvers += Resolver.sonatypeRepo("releases")
+
 lazy val root = (project in file("."))
   .settings(commonSettings: _*)
   .settings(
@@ -12,9 +14,11 @@ lazy val root = (project in file("."))
       // compile time dependencies
       library.shapeless % Compile,
       // test dependencies
-      library.scalaTest % "test"
+      library.scalaTest % "test",
+      library.ammonite % "test"
     )
   )
+
 
 // *****************************************************************************
 // Dependencies
@@ -26,10 +30,12 @@ lazy val library =
       val kindProjector = "0.9.6"
       val shapeless     = "2.3.3"
       val scalaTest     = "3.0.5"
+      val ammonite      = "1.1.0"
     }
     val kindProjector   = "org.spire-math" %% "kind-projector" % Version.kindProjector
     val shapeless       = "com.chuusai"    %% "shapeless"      % Version.shapeless
     val scalaTest       = "org.scalatest"  %% "scalatest"      % Version.scalaTest
+    val ammonite        = "com.lihaoyi"    %% "ammonite"       % Version.ammonite cross CrossVersion.full
   }
 
 // *****************************************************************************
@@ -37,7 +43,7 @@ lazy val library =
 // *****************************************************************************
 
 lazy val commonSettings = Seq(
-  scalaVersion := "2.12.5",
+  scalaVersion := "2.12.4",
   organization := "co.upvest",
   scalacOptions ++= Seq(
     "-unchecked",

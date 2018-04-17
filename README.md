@@ -13,6 +13,7 @@ object Rich {
   implicit val adj = deriveAdjective[Rich]
 }
 
+
 import co.upvest.terminology.adjectives.implicits._
 
 // Drop adjectives by using .as[T] syntax
@@ -20,6 +21,7 @@ Rich(Household("foo")).as[Household] : Household
 
 // Map on underlying type using mapU syntax
 Rich(Household("foo")) mapU { (h: Household) => Owner(h.owner) } : Rich[Owner]
+
 
 // There are some predefined adjectives
 import co.upvest.terminology.adjectives.common._
