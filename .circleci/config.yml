@@ -1,0 +1,37 @@
+version: 2
+
+sbt-build: &sbt-build
+  docker:
+    - image: hseeberger/scala-sbt:8u151-2.12.4-1.1.1
+  environment:
+    - SBT_OPTS: "-Xms512m -Xmx2g -XX:+UseConcMarkSweepGC -XX:ReservedCodeCacheSize=256m -XX:+CMSClassUnloadingEnabled -Djava.awt.headless=true -no-colors -batch"
+  steps:
+    - checkout
+    - run: git branch -u origin/$CIRCLE_BRANCH
+    - setup_remote_docker:
+        docker_layer_caching: true
+        version: 17.09.0-ce
+    - restore_cache:
+        key: sbt-deps-{{ checksum "build.sbt" }}
+    - run: sbt "$SBT_OPTS" "$SBT_CMDS"
+    - save_cache:
+        key: sbt-deps-{{ checksum "build.sbt" }}
+        paths:
+          - ~/.m2
+          - ~/.ivy2
+          - ~/.sbt
+
+jobs:
+
+  test:
+    <<: *sbt-build
+    resource_class: small
+    environment:
+      - SBT_CMDS: "; test; example"
+
+workflows:
+  version: 2
+
+  ci:
+    jobs:
+      - test

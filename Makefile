@@ -1,10 +1,13 @@
+SBT_OPTS ?=
+SBT=sbt $(SBT_OPTS)
+
 README.md: test example
 	./readme.sh
 
 test:
-	sbt test
+	$(SBT) test
 
 example:
-	sbt "test:run src/test/resources/example.sc"
+	$(SBT) example
 
 .PHONY: README.md test

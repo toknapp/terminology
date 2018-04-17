@@ -19,6 +19,7 @@ lazy val root = (project in file("."))
     )
   )
 
+addCommandAlias("example", ";test:run src/test/resources/example.sc")
 
 // *****************************************************************************
 // Dependencies
