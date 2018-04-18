@@ -121,15 +121,23 @@ lazy val releaseSettings = Seq(
     checkSnapshotDependencies,
     inquireVersions,
     runClean,
-    runTest,
+
     setReleaseVersion,
     commitReleaseVersion,
     tagRelease,
-    publishArtifacts,
+    pushChanges,
+
+    ReleaseStep(action = { st =>
+      val Some(vcs) = Project.extract(st).get(releaseVcs)
+      val 0 = vcs.cmd("checkout", "develop").!
+      st
+    }),
     setNextVersion,
     commitNextVersion,
-    releaseStepCommand("sonatypeReleaseAll"),
-    pushChanges
+    pushChanges,
+
+    publishArtifacts,
+    releaseStepCommand("sonatypeReleaseAll")
   )
 )
 
