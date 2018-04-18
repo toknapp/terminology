@@ -13,12 +13,12 @@ trait AdjectiveImplicits
 // I consider them as nils and cons cells and add implicits to look for the
 // desried type, denoted `U` below.
 
-trait AdjectiveMapperImplicits {
-  trait AdjectiveMapper[F[_], U, R] {
-    type Out[S]
-    def mapU[S](fr: F[R], f: U => S): F[Out[S]]
-  }
+trait AdjectiveMapper[F[_], U, R] {
+  type Out[S]
+  def mapU[S](fr: F[R], f: U => S): F[Out[S]]
+}
 
+trait AdjectiveMapperImplicits {
   implicit def adjMapNil[F[_], U](implicit A: Adjective[F]) =
     new AdjectiveMapper[F, U, U] {
       type Out[S] = S
@@ -42,11 +42,11 @@ trait AdjectiveMapperImplicits {
   }
 }
 
-trait AdjectiveDropperImplicits {
-  trait AdjectiveDropper[F[_], U, R] {
-    def as(fr: F[R]): U
-  }
+trait AdjectiveDropper[F[_], U, R] {
+  def as(fr: F[R]): U
+}
 
+trait AdjectiveDropperImplicits {
   implicit def adjDropNil[F[_], U](implicit A: Adjective[F]) =
     new AdjectiveDropper[F, U, U] {
       def as(fu: F[U]): U = A.unlabel(fu)
@@ -59,7 +59,7 @@ trait AdjectiveDropperImplicits {
     def as(fgr: F[G[R]]): U = AD.as(A.unlabel(fgr))
   }
 
-  implicit class AsSyntax[F[_], T](ft: F[T]) {
+  implicit class AsSyntax[F[_]: Adjective, T](ft: F[T]) {
     def as[U](implicit AD: AdjectiveDropper[F, U, T]): U = AD.as(ft)
   }
 }
