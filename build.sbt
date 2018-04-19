@@ -130,14 +130,13 @@ lazy val releaseSettings = Seq(
 
     setReleaseVersion,
     tagRelease,
+    publishArtifacts,
+    releaseStepCommand("sonatypeReleaseAll"),
 
     checkoutBranch("develop"),
     setNextVersion,
     commitNextVersion,
-    pushChanges,
-
-    publishArtifacts,
-    releaseStepCommand("sonatypeReleaseAll")
+    pushChanges
   )
 )
 
