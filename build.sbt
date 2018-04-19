@@ -128,6 +128,7 @@ lazy val releaseSettings = Seq(
     inquireVersions,
     runClean,
 
+    setReleaseVersion,
     tagRelease,
 
     checkoutBranch("develop"),
