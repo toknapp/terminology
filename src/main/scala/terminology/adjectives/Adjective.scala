@@ -59,7 +59,7 @@ trait AdjectiveDropperImplicits {
     def as(fgr: F[G[R]]): U = AD.as(A.unlabel(fgr))
   }
 
-  implicit class AsSyntax[F[_]: Adjective, T](ft: F[T]) {
+  implicit class AsSyntax[F[_], T](ft: F[T]) {
     def as[U](implicit AD: AdjectiveDropper[F, U, T]): U = AD.as(ft)
   }
 }
