@@ -7,7 +7,8 @@ terminology.
 
 This one aims to syntax support for mapping and casting (dropping of tags) to
 your own properties, adjectives and descriptor types via type-classes with the
-aid of derivation via [Generic1](https://github.com/milessabin/shapeless/blob/master/core/src/main/scala/shapeless/generic1.scala)).
+aid of [semiauto](./src/main/scala/terminology/adjectives/semiauto.scala) derivation via
+[Generic1](https://github.com/milessabin/shapeless/blob/master/core/src/main/scala/shapeless/generic1.scala)).
 
 Similar projects:
 * [supertagged](https://github.com/rudogma/scala-supertagged)
@@ -15,6 +16,10 @@ Similar projects:
 * Shapeless' [Tagged](https://github.com/milessabin/shapeless/blob/master/core/src/main/scala/shapeless/typeoperators.scala#L25)
 
 ## Example
+The following example is an [runnable file](./src/test/resources/example.sc) using
+[Ammonite](https://github.com/lihaoyi/Ammonite) and is
+[verified to compile and run](https://github.com/toknapp/terminology/blob/6b357b04881fef72f210ea1c65516abd14be0e82/build.sbt#L23)
+during the [CI-cycle](https://github.com/toknapp/terminology/blob/6b357b04881fef72f210ea1c65516abd14be0e82/.circleci/config.yml#L52).
 ```scala
 // If you have some wrappers describing some terms in your model ...
 case class Household(owner: String) extends AnyVal
