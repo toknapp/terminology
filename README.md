@@ -10,9 +10,9 @@ your own properties, adjectives and descriptor types via type-classes with the
 aid of derivation via [Generic1](https://github.com/milessabin/shapeless/blob/master/core/src/main/scala/shapeless/generic1.scala)).
 
 Similar projects:
-* (supertagged)[https://github.com/rudogma/scala-supertagged]
-* Scalaz' (Tag)[https://github.com/scalaz/scalaz/blob/series/7.3.x/core/src/main/scala/scalaz/Tag.scala]
-* Shapeless' (Tagged)[https://github.com/milessabin/shapeless/blob/master/core/src/main/scala/shapeless/typeoperators.scala#L25]
+* [supertagged](https://github.com/rudogma/scala-supertagged)
+* Scalaz' [Tag](https://github.com/scalaz/scalaz/blob/series/7.3.x/core/src/main/scala/scalaz/Tag.scala)
+* Shapeless' [Tagged](https://github.com/milessabin/shapeless/blob/master/core/src/main/scala/shapeless/typeoperators.scala#L25)
 
 ## Example
 ```scala
