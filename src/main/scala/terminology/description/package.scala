@@ -1,5 +1,6 @@
 package co.upvest.terminology
 
 package object description {
-  object implicits extends DescriptionImplicits
+  object syntax extends DescriptionOps
+  val implicits = syntax // for backwards compatibility
 }
