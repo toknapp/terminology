@@ -11,7 +11,7 @@ object Rich {
 }
 
 // If we import some implicits giving us access to the syntaxes...
-import co.upvest.terminology.adjectives.implicits._
+import co.upvest.terminology.adjectives.syntax._
 
 // ... we can drop adjectives by using `.as[T]` syntax,
 Rich(Household("foo")).as[Household] : Household
@@ -52,7 +52,7 @@ object Password {
 // which here expresses that in general users can't be trusted to pick a strong
 // password.
 
-import co.upvest.terminology.description.implicits._
+import co.upvest.terminology.description.syntax._
 
 Password("1234").description : Weak[Entropic[Array[Byte]]]
 
