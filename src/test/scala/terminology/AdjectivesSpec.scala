@@ -1,13 +1,14 @@
 package co.upvest.terminology
 
 import adjectives.common._
-import adjectives.implicits._
 
 import org.scalatest.{WordSpec, Matchers}
 
 class AdjectivesSpec extends WordSpec with Matchers {
   "Adjectives" should {
     "mapU" should {
+      import adjectives.syntax.mapU
+
       "map the inner-most type" in {
         typed[Hashed[Weak[Secret[Int]]]] {
           Hashed(Weak(Secret("lol"))) mapU { (s: String) => s.length }
@@ -28,6 +29,8 @@ class AdjectivesSpec extends WordSpec with Matchers {
     }
 
     "as" should {
+      import adjectives.syntax.as
+
       "discard the outermost adjective" in {
         typed[Weak[Secret[String]]] {
           Hashed(Weak(Secret("lol"))).as[Weak[Secret[String]]]
@@ -44,6 +47,44 @@ class AdjectivesSpec extends WordSpec with Matchers {
         typed[String] {
           Hashed(Weak(Secret("lol"))).as[String]
         }
+      }
+    }
+
+    "peel" should {
+      import adjectives.syntax.peel
+
+      "unwrap one adjectives" in {
+        typed[String] {
+          Hashed("lol").peel
+        }
+      }
+
+      "unwrap two adjectives" in {
+        typed[String] {
+          Weak(Secret("lol")).peel
+        }
+      }
+
+      "unwrap three adjectives" in {
+        typed[String] {
+          Hashed(Weak(Secret("lol"))).peel
+        }
+      }
+    }
+
+    "cast" should {
+      import adjectives.syntax.cast
+
+      "unwrap one adjectives automatically" in {
+        typed[String] { Hashed("lol") }
+      }
+
+      "unwrap two adjectives automatically" in {
+        typed[String] { Weak(Secret("lol")) }
+      }
+
+      "unwrap three adjectives automatically" in {
+        typed[String] { Hashed(Weak(Secret("lol"))) }
       }
     }
   }

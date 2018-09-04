@@ -1,5 +1,6 @@
 package co.upvest.terminology
 
 package object adjectives {
-  object implicits extends AdjectiveImplicits
+  object syntax extends AdjectiveOps
+  val implicits = syntax // for backwards compatibility
 }

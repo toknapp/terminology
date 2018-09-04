@@ -1,10 +1,8 @@
 package co.upvest.terminology
 
 import adjectives.common._
-import adjectives.implicits._
 
 import description.Description
-import description.implicits._
 
 import org.scalatest.{WordSpec, Matchers}
 
@@ -18,14 +16,17 @@ class DescriptionSpec extends WordSpec with Matchers {
 
   "Description" should {
     "describe types" in {
+      import description.syntax.description
       typed[Strong[Secret[Int]]] { Foo(8).description }
     }
 
     "support the adjectives' as syntax" in {
+      import description.syntax.as
       typed[Secret[Int]] { Foo(8).as[Secret[Int]] }
     }
 
     "support the adjectives' mapU syntax" in {
+      import description.syntax.mapU
       typed[Strong[Secret[String]]] { Foo(8) mapU { i: Int => i.toString } }
     }
   }
