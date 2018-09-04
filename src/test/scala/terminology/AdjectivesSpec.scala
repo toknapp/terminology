@@ -71,5 +71,21 @@ class AdjectivesSpec extends WordSpec with Matchers {
         }
       }
     }
+
+    "cast" should {
+      import adjectives.syntax.cast
+
+      "unwrap one adjectives automatically" in {
+        typed[String] { Hashed("lol") }
+      }
+
+      "unwrap two adjectives automatically" in {
+        typed[String] { Weak(Secret("lol")) }
+      }
+
+      "unwrap three adjectives automatically" in {
+        typed[String] { Hashed(Weak(Secret("lol"))) }
+      }
+    }
   }
 }

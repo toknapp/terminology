@@ -72,4 +72,6 @@ trait AdjectiveOps {
       AM: AdjectiveMapper[F, U, T]
     ): F[AM.Out[R]] = AM.mapU(ft, f)
   }
+
+  implicit def cast[F[_], T, U](ft: F[T])(implicit AD: AdjectiveDropper[F, U, T]): U = AD.as(ft)
 }
