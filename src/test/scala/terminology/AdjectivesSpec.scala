@@ -50,24 +50,24 @@ class AdjectivesSpec extends WordSpec with Matchers {
       }
     }
 
-    "peal" should {
-      import adjectives.syntax.peal
+    "peel" should {
+      import adjectives.syntax.peel
 
       "unwrap one adjectives" in {
         typed[String] {
-          Hashed("lol").peal
+          Hashed("lol").peel
         }
       }
 
       "unwrap two adjectives" in {
         typed[String] {
-          Weak(Secret("lol")).peal
+          Weak(Secret("lol")).peel
         }
       }
 
       "unwrap three adjectives" in {
         typed[String] {
-          Hashed(Weak(Secret("lol"))).peal
+          Hashed(Weak(Secret("lol"))).peel
         }
       }
     }

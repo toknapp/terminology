@@ -63,8 +63,8 @@ trait AdjectiveOpsLower {
     def as[U](implicit AD: AdjectiveDropper[F, U, T]): U = AD.as(ft)
   }
 
-  implicit class AdjectivePealSyntax[F[_], T, U](ft: F[T])(implicit AD: AdjectiveDropper[F, U, T]) {
-    def peal: U = AD.as(ft)
+  implicit class AdjectivePeelSyntax[F[_], T, U](ft: F[T])(implicit AD: AdjectiveDropper[F, U, T]) {
+    def peel: U = AD.as(ft)
   }
 
   implicit class AdjectiveMapUSyntax[F[_], T](ft: F[T]) {
@@ -79,8 +79,8 @@ trait AdjectiveOpsLower {
 trait AdjectiveOps extends AdjectiveOpsLower {
   implicit def as[F[_], T](ft: F[T]) = new AdjectiveAsSyntax(ft)
 
-  implicit def peal[F[_], T, U](ft: F[T])(implicit AD: AdjectiveDropper[F, U, T]) =
-    new AdjectivePealSyntax(ft)(AD)
+  implicit def peel[F[_], T, U](ft: F[T])(implicit AD: AdjectiveDropper[F, U, T]) =
+    new AdjectivePeelSyntax(ft)(AD)
 
   implicit def mapU[F[_], T](ft: F[T]) = new AdjectiveMapUSyntax(ft)
 
